@@ -59,8 +59,8 @@ export function AdminSidebar() {
           </div>
           {!collapsed && (
             <div>
-              <h1 className="text-lg font-bold text-primary-foreground">HQ Admin</h1>
-              <p className="text-xs text-primary-foreground/80">Management Panel</p>
+              <h1 className="text-lg font-bold text-black">HQ Admin</h1>
+              <p className="text-xs text-black/80">Management Panel</p>
             </div>
           )}
         </div>
@@ -68,7 +68,7 @@ export function AdminSidebar() {
 
       <SidebarContent className="py-4">
         <SidebarGroup>
-          <SidebarGroupLabel className={`${collapsed ? "sr-only" : "px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2"}`}>
+          <SidebarGroupLabel className={`${collapsed ? "sr-only" : "px-4 text-xs font-semibold text-black uppercase tracking-wider mb-2"}`}>
             Navigation
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -83,7 +83,7 @@ export function AdminSidebar() {
                         `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
                           navIsActive || isActive(item.url)
                             ? "bg-primary text-primary-foreground shadow-md"
-                            : "text-foreground hover:bg-accent hover:text-accent-foreground"
+                            : "text-black hover:bg-accent hover:text-black"
                         }`
                       }
                     >
