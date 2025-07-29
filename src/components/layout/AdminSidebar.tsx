@@ -51,7 +51,7 @@ export function AdminSidebar() {
   };
 
   return (
-    <Sidebar className={`${collapsed ? "w-16" : "w-64"} border-r bg-card shadow-lg transition-all duration-300`}>
+    <Sidebar className={`${collapsed ? "w-16" : "w-64"} border-r bg-blue-50 shadow-lg transition-all duration-300`}>
       <SidebarHeader className="p-4 border-b bg-primary">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 bg-primary-foreground rounded-lg flex items-center justify-center">
@@ -83,7 +83,7 @@ export function AdminSidebar() {
                         `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
                           navIsActive || isActive(item.url)
                             ? "bg-primary text-primary-foreground shadow-md"
-                            : "text-black hover:bg-accent hover:text-black"
+                            : "text-black hover:bg-blue-100 hover:text-black"
                         }`
                       }
                     >
