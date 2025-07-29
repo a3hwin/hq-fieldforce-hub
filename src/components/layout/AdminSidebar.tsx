@@ -80,10 +80,10 @@ export function AdminSidebar() {
                       to={item.url}
                       end={item.url === "/"}
                       className={({ isActive: navIsActive }) =>
-                        `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-black ${
+                        `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
                           navIsActive || isActive(item.url)
                             ? "bg-primary text-primary-foreground shadow-md"
-                            : "hover:bg-blue-100"
+                            : "text-black hover:bg-blue-100 hover:text-black"
                         }`
                       }
                     >
