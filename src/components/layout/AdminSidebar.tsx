@@ -66,7 +66,7 @@ export function AdminSidebar() {
         </div>
       </SidebarHeader>
 
-      <SidebarContent className="py-4">
+      <SidebarContent className="py-4 bg-blue-50">
         <SidebarGroup>
           <SidebarGroupLabel className={`${collapsed ? "sr-only" : "px-4 text-xs font-semibold text-black uppercase tracking-wider mb-2"}`}>
             Navigation
