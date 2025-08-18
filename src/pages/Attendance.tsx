@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Calendar, Clock, Users, Settings } from "lucide-react";
+import { Calendar, Clock, Users, Settings, Search } from "lucide-react"; // Added Search icon
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +31,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Attendance() {
   const [isHolidayModalOpen, setIsHolidayModalOpen] = useState(false);
+  const [employeeSearch, setEmployeeSearch] = useState(""); // State for employee search input
 
   const attendanceData = [
     {
@@ -79,6 +80,11 @@ export default function Attendance() {
       department: "Finance"
     }
   ];
+
+  // Filter attendance data based on employee search input
+  const filteredAttendanceData = attendanceData.filter(record =>
+    record.employee.toLowerCase().includes(employeeSearch.toLowerCase())
+  );
 
   const leaveRequests = [
     {
@@ -136,7 +142,7 @@ export default function Attendance() {
           <h1 className="text-3xl font-bold text-foreground">Attendance Management</h1>
           <p className="text-muted-foreground">Track employee attendance and manage leave requests.</p>
         </div>
-        
+
         <Dialog open={isHolidayModalOpen} onOpenChange={setIsHolidayModalOpen}>
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2 bg-primary hover:bg-primary-hover">
@@ -166,14 +172,14 @@ export default function Attendance() {
                 <Input id="shift-end" type="time" defaultValue="18:00" />
               </div>
               <div className="flex gap-2 pt-4">
-                <Button 
+                <Button
                   onClick={() => setIsHolidayModalOpen(false)}
                   className="flex-1 bg-primary hover:bg-primary-hover"
                 >
                   Save Settings
                 </Button>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   onClick={() => setIsHolidayModalOpen(false)}
                   className="flex-1"
                 >
@@ -192,17 +198,18 @@ export default function Attendance() {
         </CardHeader>
         <CardContent>
           <div className="flex gap-4 flex-wrap items-center">
-            <Select>
-              <SelectTrigger className="w-48">
-                <SelectValue placeholder="Select Employee" />
-              </SelectTrigger>
-              <SelectContent className="bg-popover">
-                <SelectItem value="all">All Employees</SelectItem>
-                <SelectItem value="john">John Doe</SelectItem>
-                <SelectItem value="sarah">Sarah Wilson</SelectItem>
-                <SelectItem value="mike">Mike Johnson</SelectItem>
-              </SelectContent>
-            </Select>
+            {/* Replaced Select with Input for search */}
+            <div className="relative flex items-center">
+              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+              <Input
+                type="text"
+                placeholder="Search Employee"
+                className="w-48 pl-8"
+                value={employeeSearch}
+                onChange={(e) => setEmployeeSearch(e.target.value)}
+              />
+            </div>
+
             <Select>
               <SelectTrigger className="w-48">
                 <SelectValue placeholder="Department" />
@@ -256,7 +263,8 @@ export default function Attendance() {
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                  {attendanceData.map((record) => (
+                  {/* Used filteredAttendanceData */}1
+                  {filteredAttendanceData.map((record) => (
                     <TableRow key={record.id} className={record.status === "Late" || record.status === "Absent" ? "bg-destructive/5" : ""}>
                       <TableCell className="font-medium">{record.employee}</TableCell>
                       <TableCell>{record.department}</TableCell>

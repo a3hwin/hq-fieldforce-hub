@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Users, Calendar, MapPin, FileText, TrendingUp, AlertTriangle } from "lucide-react";
+import { Users, Calendar, MapPin, FileText, TrendingUp, AlertTriangle, Navigation, Clock, Circle } from "lucide-react";
 
 export default function Dashboard() {
   const stats = [
@@ -42,6 +42,45 @@ export default function Dashboard() {
     { type: "task", message: "New task assigned to Emma Davis", time: "2 hours ago", status: "info" }
   ];
 
+  // This is the map view component from GPS Tracking page
+  const MapViewCard = () => (
+     <Card className="bg-card shadow-md">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <MapPin className="w-5 h-5 text-primary" />
+            Live Location Map
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="bg-muted rounded-lg h-96 flex items-center justify-center border-2 border-dashed border-border">
+            <div className="text-center">
+              <MapPin className="w-16 h-16 mx-auto mb-4 text-muted-foreground" />
+              <h3 className="text-lg font-semibold text-foreground mb-2">Interactive Map View</h3>
+              <p className="text-muted-foreground mb-4">Google Maps integration would be displayed here</p>
+              <div className="grid grid-cols-2 gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-success"></div>
+                  <span>Active Employees</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-info"></div>
+                  <span>Moving</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-warning"></div>
+                  <span>Idle</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-primary"></div>
+                  <span>Geofence Areas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+  )
+
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -72,6 +111,9 @@ export default function Dashboard() {
           </Card>
         ))}
       </div>
+
+      {/* Map View Card */}
+      <MapViewCard />
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Recent Activities */}

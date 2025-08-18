@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Switch } from "@/components/ui/switch";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import {
   Table,
@@ -64,13 +65,14 @@ export default function Settings() {
       </div>
 
       <Tabs defaultValue="roles" className="w-full">
-        <TabsList className="grid w-full max-w-md grid-cols-3">
+        <TabsList className="grid w-full max-w-md grid-cols-4">
           <TabsTrigger value="roles">Roles & Permissions</TabsTrigger>
           <TabsTrigger value="checkin">Check-in Policy</TabsTrigger>
           <TabsTrigger value="modules">Module Toggles</TabsTrigger>
+          <TabsTrigger value="account">Account Settings</TabsTrigger> {/* Added new tab trigger */}
         </TabsList>
 
-        <TabsContent value="roles" className="space-y-6">
+        <TabsContent value="roles" className="space-y-6 p-8">
           <Card className="bg-card shadow-md">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -117,7 +119,7 @@ export default function Settings() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="checkin" className="space-y-6">
+        <TabsContent value="checkin" className="space-y-6 p-4">
           <Card className="bg-card shadow-md">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -211,7 +213,7 @@ export default function Settings() {
           </Card>
         </TabsContent>
 
-        <TabsContent value="modules" className="space-y-6">
+        <TabsContent value="modules" className="space-y-6 p-4">
           <Card className="bg-card shadow-md">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -313,6 +315,36 @@ export default function Settings() {
             </CardContent>
           </Card>
         </TabsContent>
+
+        {/* New TabsContent for Account Settings */}
+       <TabsContent value="account" className="space-y-6 p-4">
+         <Card className="bg-card shadow-md"> {/* Added Card */}
+           <CardHeader> {/* Added CardHeader */}
+             <CardTitle className="flex items-center gap-2"> {/* Added CardTitle */}
+               {/* You can add an icon here if desired, similar to other tabs */}
+               Account Settings
+             </CardTitle>
+           </CardHeader>
+           <CardContent className="space-y-6"> {/* Added CardContent */}
+             <p className="text-muted-foreground">Customize your company's appearance and details.</p> {/* Moved description inside card */}
+             <div className="space-y-4">
+               <div className="space-y-2">
+                 <Label htmlFor="company-name">Company Name</Label>
+                 <Input id="company-name" placeholder="Enter your company name" />
+               </div>
+               <div className="space-y-2">
+                 <Label htmlFor="company-description">Company Description</Label>
+                 <Textarea id="company-description" placeholder="Provide a brief description of your company" />
+               </div>
+               <div className="space-y-2">
+                 <Label htmlFor="company-logo">Company Logo</Label>
+                 <Input id="company-logo" type="file" className="cursor-pointer" />
+                 <p className="text-xs text-muted-foreground">Upload your company logo (max 5MB)</p>
+               </div>
+             </div>
+           </CardContent>
+         </Card> {/* Closed Card */}
+       </TabsContent>
       </Tabs>
     </div>
   );

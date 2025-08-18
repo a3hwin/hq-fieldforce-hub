@@ -31,11 +31,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export default function Employees() {
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isAddEmployeeModalOpen, setIsAddEmployeeModalOpen] = useState(false);
+  const [isAddDepartmentModalOpen, setIsAddDepartmentModalOpen] = useState(false);
 
   const employees = [
     {
@@ -90,6 +93,44 @@ export default function Employees() {
     }
   ];
 
+  const departments = [
+    {
+      id: 1,
+      name: "Sales",
+      description: "Manages sales activities and customer relations.",
+      numberOfEmployees: 15,
+      head: "Jane Smith"
+    },
+    {
+      id: 2,
+      name: "Marketing",
+      description: "Handles marketing campaigns and brand promotion.",
+      numberOfEmployees: 10,
+      head: "Peter Jones"
+    },
+    {
+      id: 3,
+      name: "Operations",
+      description: "Oversees daily business operations.",
+      numberOfEmployees: 20,
+      head: "Mary Brown"
+    },
+    {
+      id: 4,
+      name: "HR",
+      description: "Manages human resources and employee relations.",
+      numberOfEmployees: 8,
+      head: "David Green"
+    },
+     {
+      id: 5,
+      name: "Finance",
+      description: "Handles financial planning and management.",
+      numberOfEmployees: 12,
+      head: "Laura White"
+    }
+  ];
+
   const getStatusVariant = (status: string) => {
     switch (status) {
       case "Active":
@@ -111,109 +152,209 @@ export default function Employees() {
           <p className="text-muted-foreground">Manage your workforce and track employee information.</p>
         </div>
         
-        <Dialog open={isAddModalOpen} onOpenChange={setIsAddModalOpen}>
-          <DialogTrigger asChild>
-            <Button className="flex items-center gap-2 bg-primary hover:bg-primary-hover">
-              <Plus className="w-4 h-4" />
-              Add Employee
-            </Button>
-          </DialogTrigger>
-          <DialogContent className="max-w-md bg-popover">
-            <DialogHeader>
-              <DialogTitle>Add New Employee</DialogTitle>
-            </DialogHeader>
-            <div className="space-y-4 p-4">
-              <div className="space-y-2">
-                <Label htmlFor="name">Full Name</Label>
-                <Input id="name" placeholder="Enter full name" />
+        <div className="flex gap-2">
+
+           {/* Add Department Button and Dialog */}
+          <Dialog open={isAddDepartmentModalOpen} onOpenChange={setIsAddDepartmentModalOpen}>
+            <DialogTrigger asChild>
+              <Button className="flex items-center gap-2 bg-primary hover:bg-primary-hover">
+                <Plus className="w-4 h-4" />
+                Add Department
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-md bg-popover">
+              <DialogHeader>
+                <DialogTitle>Add New Department</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 p-4">
+                <div className="space-y-2">
+                  <Label htmlFor="department-name">Name</Label>
+                  <Input id="department-name" placeholder="Enter department name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="department-description">Description</Label>
+                  <Textarea id="department-description" placeholder="Enter department description" />
+                </div>
+                 <div className="space-y-2">
+                  <Label htmlFor="department-employees">Number of Employees</Label>
+                  <Input id="department-employees" type="number" placeholder="Enter number of employees" />
+                </div>
+                 <div className="space-y-2">
+                  <Label htmlFor="department-head">Head</Label>
+                  <Input id="department-head" placeholder="Enter department head's name" />
+                </div>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="Enter email address" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" placeholder="Enter phone number" />
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="role">Role</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select role" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover">
-                    <SelectItem value="manager">Manager</SelectItem>
-                    <SelectItem value="supervisor">Supervisor</SelectItem>
-                    <SelectItem value="staff">Staff</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="department">Department</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select department" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover">
-                    <SelectItem value="sales">Sales</SelectItem>
-                    <SelectItem value="marketing">Marketing</SelectItem>
-                    <SelectItem value="operations">Operations</SelectItem>
-                    <SelectItem value="hr">HR</SelectItem>
-                    <SelectItem value="finance">Finance</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="region">Region</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select region" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover">
-                    <SelectItem value="north">North</SelectItem>
-                    <SelectItem value="south">South</SelectItem>
-                    <SelectItem value="east">East</SelectItem>
-                    <SelectItem value="west">West</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="status">Status</Label>
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Select status" />
-                  </SelectTrigger>
-                  <SelectContent className="bg-popover">
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="leave">On Leave</SelectItem>
-                    <SelectItem value="resigned">Resigned</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-              <div className="space-y-2">
-                <Label htmlFor="documents">Upload Documents</Label>
-                <Input id="documents" type="file" className="cursor-pointer" />
-                <p className="text-xs text-muted-foreground">Upload resume, ID, or other documents</p>
-              </div>
-              <div className="flex gap-2 pt-4">
+               <DialogFooter>
                 <Button 
-                  onClick={() => setIsAddModalOpen(false)}
+                  onClick={() => setIsAddDepartmentModalOpen(false)}
                   className="flex-1 bg-primary hover:bg-primary-hover"
                 >
-                  Add Employee
+                  Add Department
                 </Button>
                 <Button 
                   variant="outline" 
-                  onClick={() => setIsAddModalOpen(false)}
+                  onClick={() => setIsAddDepartmentModalOpen(false)}
                   className="flex-1"
                 >
                   Cancel
                 </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
+          <Dialog open={isAddEmployeeModalOpen} onOpenChange={setIsAddEmployeeModalOpen}>
+            <DialogTrigger asChild>
+              <Button className="flex items-center gap-2 bg-primary hover:bg-primary-hover">
+                <Plus className="w-4 h-4" />
+                Add Employee
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-md bg-popover">
+              <DialogHeader>
+                <DialogTitle>Add New Employee</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 p-4">
+                <div className="space-y-2">
+                  <Label htmlFor="name">Full Name</Label>
+                  <Input id="name" placeholder="Enter full name" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input id="email" type="email" placeholder="Enter email address" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="phone">Phone</Label>
+                  <Input id="phone" placeholder="Enter phone number" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="role">Role</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select role" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover">
+                      <SelectItem value="manager">Manager</SelectItem>
+                      <SelectItem value="supervisor">Supervisor</SelectItem>
+                      <SelectItem value="staff">Staff</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="department">Department</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select department" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover">
+                      <SelectItem value="sales">Sales</SelectItem>
+                      <SelectItem value="marketing">Marketing</SelectItem>
+                      <SelectItem value="operations">Operations</SelectItem>
+                      <SelectItem value="hr">HR</SelectItem>
+                      <SelectItem value="finance">Finance</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="region">Region</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select region" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover">
+                      <SelectItem value="north">North</SelectItem>
+                      <SelectItem value="south">South</SelectItem>
+                      <SelectItem value="east">East</SelectItem>
+                      <SelectItem value="west">West</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="status">Status</Label>
+                  <Select>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select status" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-popover">
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="leave">On Leave</SelectItem>
+                      <SelectItem value="resigned">Resigned</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="documents">Upload Documents</Label>
+                  <Input id="documents" type="file" className="cursor-pointer" />
+                  <p className="text-xs text-muted-foreground">Upload resume, ID, or other documents</p>
+                </div>
+                <div className="flex gap-2 pt-4">
+                  <Button 
+                    onClick={() => setIsAddEmployeeModalOpen(false)}
+                    className="flex-1 bg-primary hover:bg-primary-hover"
+                  >
+                    Add Employee
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setIsAddEmployeeModalOpen(false)}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                </div>
               </div>
-            </div>
-          </DialogContent>
-        </Dialog>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
+
+      {/* Department List Card */}
+      <Card className="bg-card shadow-md">
+        <CardHeader>
+          <CardTitle>Department List</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead>Name</TableHead>
+                <TableHead>Description</TableHead>
+                <TableHead>Number of Employees</TableHead>
+                <TableHead>Head</TableHead>
+                <TableHead className="text-right">Actions</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {departments.map((department) => (
+                <TableRow key={department.id}>
+                  <TableCell className="font-medium">{department.name}</TableCell>
+                  <TableCell>{department.description}</TableCell>
+                  <TableCell>{department.numberOfEmployees}</TableCell>
+                  <TableCell>{department.head}</TableCell>
+                  <TableCell className="text-right">
+                     <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="icon">
+                          <MoreHorizontal className="w-4 h-4" />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent align="end" className="bg-popover">
+                        <DropdownMenuItem>
+                          <Edit className="w-4 h-4 mr-2" />
+                          Edit
+                        </DropdownMenuItem>
+                        <DropdownMenuItem className="text-destructive">
+                          <Trash2 className="w-4 h-4 mr-2" />
+                          Delete
+                        </DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </CardContent>
+      </Card>
 
       {/* Filters */}
       <Card className="bg-card shadow-md">

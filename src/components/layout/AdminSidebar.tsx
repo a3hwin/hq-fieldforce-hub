@@ -32,7 +32,8 @@ const navigationItems = [
   { title: "GPS Tracking", url: "/gps-tracking", icon: MapPin },
   { title: "Tasks", url: "/tasks", icon: FileText },
   { title: "Reports", url: "/reports", icon: BarChart3 },
-  { title: "Clients/Leads", url: "/clients", icon: Building2 },
+  { title: "Clients", url: "/clients", icon: Building2 },
+  { title: "Leads", url: "/leads", icon: Users }, // Added Leads entry
   { title: "Notifications", url: "/notifications", icon: Bell },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
@@ -80,9 +81,9 @@ export function AdminSidebar() {
                       to={item.url}
                       end={item.url === "/"}
                       className={({ isActive: navIsActive }) =>
-                        `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all duration-200 text-sm font-medium ${
+                        `flex items-center gap-3 px-3 py-2.5 rounded-lg transition-all hover:text-black duration-200 text-sm  font-medium ${
                           navIsActive || isActive(item.url)
-                            ? "bg-primary text-primary-foreground shadow-md"
+                            ? "bg-primary text-black shadow-md"
                             : "text-black hover:bg-blue-100 hover:text-black"
                         }`
                       }

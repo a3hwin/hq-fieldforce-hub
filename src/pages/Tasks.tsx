@@ -24,6 +24,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
+  DialogFooter
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,6 +32,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export default function Tasks() {
   const [isNewTaskModalOpen, setIsNewTaskModalOpen] = useState(false);
+  const [isAddTaskTypeModalOpen, setIsAddTaskTypeModalOpen] = useState(false);
 
   const tasksData = [
     {
@@ -124,7 +126,47 @@ export default function Tasks() {
             <Upload className="w-4 h-4" />
             Bulk Import (CSV)
           </Button>
-          
+
+          {/* Add Task Type Button and Dialog */}
+          <Dialog open={isAddTaskTypeModalOpen} onOpenChange={setIsAddTaskTypeModalOpen}>
+            <DialogTrigger asChild>
+              <Button className="flex items-center gap-2 bg-primary hover:bg-primary-hover">
+                <Plus className="w-4 h-4" />
+                Add Task Type
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="max-w-sm bg-popover">
+              <DialogHeader>
+                <DialogTitle>Add New Task Type</DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4 py-4">
+                <div className="space-y-2">
+                  <Label htmlFor="task-type-title">Title</Label>
+                  <Input id="task-type-title" placeholder="Enter task type title" />
+                </div>
+                <div className="space-y-2">
+                  <Label htmlFor="task-type-description">Description</Label>
+                  <Textarea id="task-type-description" placeholder="Describe the task type..." className="min-h-20" />
+                </div>
+              </div>
+              <DialogFooter>
+                 <Button 
+                    onClick={() => setIsAddTaskTypeModalOpen(false)}
+                    className="flex-1 bg-primary hover:bg-primary-hover"
+                  >
+                    Add Task Type
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setIsAddTaskTypeModalOpen(false)}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
           <Dialog open={isNewTaskModalOpen} onOpenChange={setIsNewTaskModalOpen}>
             <DialogTrigger asChild>
               <Button className="flex items-center gap-2 bg-primary hover:bg-primary-hover">

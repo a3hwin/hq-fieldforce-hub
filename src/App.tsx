@@ -11,6 +11,7 @@ import GpsTracking from "./pages/GpsTracking";
 import Tasks from "./pages/Tasks";
 import Reports from "./pages/Reports";
 import Clients from "./pages/Clients";
+import Leads from "./pages/Leads"; // Import the Leads page
 import Notifications from "./pages/Notifications";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
@@ -32,6 +33,7 @@ const App = () => (
             <Route path="tasks" element={<Tasks />} />
             <Route path="reports" element={<Reports />} />
             <Route path="clients" element={<Clients />} />
+            <Route path="leads" element={<Leads />} /> {/* Add the route for Leads */}
             <Route path="notifications" element={<Notifications />} />
             <Route path="settings" element={<Settings />} />
           </Route>

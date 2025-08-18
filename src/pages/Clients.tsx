@@ -124,7 +124,7 @@ export default function Clients() {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <div>
-          <h1 className="text-3xl font-bold text-foreground">Clients & Leads</h1>
+          <h1 className="text-3xl font-bold text-foreground">Clients</h1>
           <p className="text-muted-foreground">Manage your client relationships and track sales opportunities.</p>
         </div>
         
@@ -132,12 +132,12 @@ export default function Clients() {
           <DialogTrigger asChild>
             <Button className="flex items-center gap-2 bg-primary hover:bg-primary-hover">
               <Plus className="w-4 h-4" />
-              Add Client/Lead
+              Add Client
             </Button>
           </DialogTrigger>
           <DialogContent className="max-w-md bg-popover">
             <DialogHeader>
-              <DialogTitle>Add New Client/Lead</DialogTitle>
+              <DialogTitle>Add New Client</DialogTitle>
             </DialogHeader>
             <div className="space-y-4 p-4">
               <div className="space-y-2">
